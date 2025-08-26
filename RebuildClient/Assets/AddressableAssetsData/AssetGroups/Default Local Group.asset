@@ -27594,6 +27594,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Sprite
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49244329554d5cb4d891b1f7dab969fe
+    m_Address: "Assets/Sprites/Characters/BodyMale/\uCD08\uBCF4\uC790_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 49284af214dc5ea40bb3ff1f001ab514
     m_Address: Assets/Sprites/Imported/Collections/Combat_Knife.png
     m_ReadOnly: 0
@@ -35499,6 +35505,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d5db71c1d818e8489aeaf8bde019d19
     m_Address: "Assets/Sprites/Headgear/Female/\uC5EC_\uACF0\uB3CC\uC774\uBAA8\uC790.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d62af00e222da942b3159813d98e1aa
+    m_Address: Assets/Sprites/Monsters/barricade.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
