@@ -428,7 +428,7 @@ public partial class CombatEntity
         return true;
     }
 
-    public bool TrySilenceTarget(CombatEntity target, int chanceIn1000, float delayApply = 0.3f)
+    public bool TrySilenceTarget(CombatEntity target, int chanceIn1000, float delayApply = 0.3f, float baseLength = 30f)
     {
         if (target.HasStatusEffectOfType(CharacterStatusEffect.Silence) || target.GetSpecialType() == CharacterSpecialType.Boss)
             return false;
@@ -436,7 +436,7 @@ public partial class CombatEntity
         var luk = target.GetEffectiveStat(CharacterStat.Luk);
         var vit = target.GetEffectiveStat(CharacterStat.Vit);
 
-        var resist = MathHelper.PowScaleDown(luk);
+        var resist = MathHelper.PowScaleDown(vit + luk);
         var resistChance = 100 - target.GetStat(CharacterStat.ResistSilenceStatus);
         if (resistChance != 100)
             resist = resist * resistChance / 100;
@@ -447,7 +447,7 @@ public partial class CombatEntity
         var timeResist = MathHelper.PowScaleDown(vit + GameRandom.Next(0, luk));
         if (resistChance != 100)
             timeResist = resist * resistChance / 100;
-        var len = 30f * timeResist;
+        var len = baseLength * timeResist;
 
         target.CancelCast();
 
@@ -544,6 +544,15 @@ public partial class CombatEntity
 
         if ((target & StatusCleanseTarget.Petrify) > 0 && HasBodyState(BodyStateFlags.Petrified))
             hasUpdate |= statusContainer.RemoveStatusEffectOfType(CharacterStatusEffect.Stone);
+
+        if ((target & StatusCleanseTarget.Frozen) > 0 && HasBodyState(BodyStateFlags.Frozen))
+            hasUpdate |= statusContainer.RemoveStatusEffectOfType(CharacterStatusEffect.Frozen);
+
+        if ((target & StatusCleanseTarget.Stunned) > 0 && HasBodyState(BodyStateFlags.Stunned))
+            hasUpdate |= statusContainer.RemoveStatusEffectOfType(CharacterStatusEffect.Stun);
+
+        if ((target & StatusCleanseTarget.Sleep) > 0 && HasBodyState(BodyStateFlags.Sleep))
+            hasUpdate |= statusContainer.RemoveStatusEffectOfType(CharacterStatusEffect.Sleep);
 
         if (hasUpdate)
             UpdateStats();

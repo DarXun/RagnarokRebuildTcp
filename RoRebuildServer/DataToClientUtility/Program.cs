@@ -639,7 +639,8 @@ class Program
         {
             var j0 = DataManager.ExpChart.RequiredJobExp(0, i);
             var j1 = DataManager.ExpChart.RequiredJobExp(1, i);
-            txtOut.AppendLine($"{j0},{j1}");
+            var j2 = DataManager.ExpChart.RequiredJobExp(9, i);
+            txtOut.AppendLine($"{j0},{j1},{j2}");
         }
         File.WriteAllText(Path.Combine(outPath, "jobexpchart.txt"), txtOut.ToString());
     }
@@ -911,7 +912,7 @@ class Program
 
         //job list
         var jobs = ConvertToClient<CsvJobs, PlayerClassData>("Jobs.csv", "playerclass.json",
-            jobs => jobs.Select(j => new PlayerClassData() { Id = j.Id, Name = j.Class, SpriteFemale = j.SpriteFemale, SpriteMale = j.SpriteMale }).ToList()
+            jobs => jobs.Select(j => new PlayerClassData() { Id = j.Id, Name = j.Class, SpriteFemale = j.SpriteFemale, SpriteMale = j.SpriteMale, ExpChart = j.ExpChart}).ToList()
             );
 
 
